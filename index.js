@@ -12,6 +12,9 @@ app.use(express.json());
 
 app.use(cors());
 
+// models
+require("./Models/Legends");
+
 
 app.get("/", (req, res) => {
     res.json({
@@ -20,6 +23,9 @@ app.get("/", (req, res) => {
     });
 });
 
+
+//routes
+app.use("/legends", require("./Routes/Legends"));
 
 const PORT = process.env.PORT || 3800;
 
