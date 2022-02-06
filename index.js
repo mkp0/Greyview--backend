@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 
 //routes
 app.use("/legends", require("./Routes/Legends"));
+app.use("/auth", require("./Routes/Auth"));
 
 const PORT = process.env.PORT || 3800;
 
