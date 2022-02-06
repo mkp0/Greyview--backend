@@ -17,8 +17,8 @@ router.get("/", (req, res) => {
 
 router.post("/getLegends", GET_LEGENDS);
 router.get("/getSingleLegends/:id", GET_LEGEND);
-router.post("/postLegend", auth, POST_LEGENDS);
-router.put("/updateLegend/:id", auth, UPDATE_LEGENDS);
-router.delete("/deleteLegend/:id", auth, DELETE_LEGENDS);
+router.post("/postLegend", POST_LEGENDS);
+router.put("/updateLegend/:id", UPDATE_LEGENDS);
+router.delete("/deleteLegend/:id", DELETE_LEGENDS);
 
 module.exports = router;

@@ -51,6 +51,7 @@ module.exports.GET_LEGEND = async (req, res) => {
 };
 
 module.exports.POST_LEGENDS = (req, res) => {
+    console.log(req.body)
     const { name, package, priceing, batch, branch, type } = req.body;
     if (!name || !package || !priceing || !batch || !branch || !type) {
         return res.send({ error: "Fill the form" });
@@ -98,7 +99,7 @@ module.exports.UPDATE_LEGENDS = (req, res) => {
 
 
 module.exports.DELETE_LEGENDS = (req, res) => {
-    Item.findByIdAndDelete({ _id: req.params.id }).then(function (item) {
+    Legends.findByIdAndDelete({ _id: req.params.id }).then(function (item) {
         res.json({ success: true });
     });
 };
