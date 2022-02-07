@@ -3,8 +3,7 @@ const Legends = mongoose.model("Legends");
 
 module.exports.GET_LEGENDS = async (req, res) => {
 
-    const { batch, branch, type, time } = req.body;
-    console.log(req.body)
+    const { batch, branch, type, time, company } = req.body;
 
     const queries = {}
 
@@ -15,13 +14,16 @@ module.exports.GET_LEGENDS = async (req, res) => {
         queries.branch = branch;
     }
     if (type != "" && type != undefined) {
-        queries.Type = type;
+        queries.type = type;
     }
     if (time != "" && time != undefined) {
-        queries.Type = type;
+        queries.time = time;
     }
 
-    console.log(queries)
+    if (company != "" && company != undefined) {
+        queries.company = company;
+    }
+
 
     Legends.find(queries)
         .sort({ register_date: -1 })
@@ -35,7 +37,6 @@ module.exports.GET_LEGENDS = async (req, res) => {
 };
 
 module.exports.GET_LEGEND = async (req, res) => {
-    console.log(req.params)
 
     Legends.findById(req.params.id, function (err, legend) {
         if (err) {
@@ -51,22 +52,13 @@ module.exports.GET_LEGEND = async (req, res) => {
 };
 
 module.exports.POST_LEGENDS = (req, res) => {
-    console.log(req.body)
-    const { name, package, priceing, batch, branch, type } = req.body;
-    if (!name || !package || !priceing || !batch || !branch || !type) {
+    const { name, package, pricing, batch, branch, type, time, company } = req.body;
+    if (!name || !package || !pricing || !batch || !branch || !type || !time || !company) {
         return res.send({ error: "Fill the form" });
     }
 
-    const data = {
-        "name": name,
-        "package": parseInt(package),
-        "priceing": priceing,
-        "batch": batch,
-        "branch": branch,
-        "Type": type
-    }
+    const data = req.body
 
-    console.log(data);
 
     const newLegends = new Legends(data);
     newLegends
@@ -82,13 +74,9 @@ module.exports.POST_LEGENDS = (req, res) => {
 
 module.exports.UPDATE_LEGENDS = (req, res) => {
 
-    if (id == undefined) {
-        return res.status(400).send({ err: "error" })
-    }
 
     Legends.findOneAndUpdate({ _id: req.params.id }, { "$set": req.body }).exec(function (err, Legend) {
         if (err) {
-            console.log(err);
             res.status(500).send(err);
         } else {
             res.status(200).send(Legend);

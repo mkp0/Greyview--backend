@@ -9,7 +9,7 @@ const LegendsSchema = new Schema({
         type: Number,
         required: true,
     },
-    priceing: {
+    pricing: {
         type: String,
         required: true
     },
@@ -21,7 +21,15 @@ const LegendsSchema = new Schema({
         type: String,
         required: true,
     },
-    Type: {
+    type: {
+        type: String,
+        required: true,
+    },
+    time: {
+        type: String,
+        required: true,
+    },
+    company: {
         type: String,
         required: true,
     },
