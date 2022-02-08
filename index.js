@@ -15,21 +15,19 @@ app.use(cors());
 // models
 require("./Models/Legends");
 
-
 app.get("/", (req, res) => {
-    res.json({
-        message: "GREY GANG BACKEND",
-        ip_address: req.connection.remoteAddress,
-    });
+  res.json({
+    message: "GREY GANG BACKEND",
+    ip_address: req.connection.remoteAddress,
+  });
 });
-
 
 //routes
 app.use("/legends", require("./Routes/Legends"));
-// app.use("/auth", require("./Routes/Auth"));
+app.use("/auth", require("./Routes/Auth"));
 
 const PORT = process.env.PORT || 3800;
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });
