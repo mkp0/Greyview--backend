@@ -10,10 +10,7 @@ router.post("/login", (req, res) => {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
-  if (
-    id !== process.env.ADMIN_IDD ||
-    password !== process.env.ADMIN_PASSWORDD
-  ) {
+  if (id !== process.env.ADMIN_ID || password !== process.env.ADMIN_PASSWORD) {
     return res.status(400).json({ msg: "Wrong credential" });
   }
 
