@@ -37,4 +37,8 @@ router.get("/signin", auth, (req, res) => {
   });
 });
 
+router.get("/", auth, (req, res) => {
+  res.send({ res: "success" });
+});
+
 module.exports = router;
