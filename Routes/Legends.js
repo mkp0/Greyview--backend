@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   res.send("hello world");
 });
 
-router.post("/getLegends", GET_LEGENDS);
+router.get("/getLegends", GET_LEGENDS);
 router.get("/getSingleLegends/:id", auth, GET_LEGEND);
 router.post("/postLegend", auth, POST_LEGENDS);
 router.put("/updateLegend/:id", auth, UPDATE_LEGENDS);
